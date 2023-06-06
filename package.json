@@ -1,0 +1,19 @@
+{
+    "name": "design-pattern-2",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "vitest --config ./vitest.config.ts"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "unplugin-auto-import": "^0.16.4",
+        "vitest": "^0.31.4"
+    },
+    "dependencies": {
+        "vite": "^4.3.9"
+    }
+}

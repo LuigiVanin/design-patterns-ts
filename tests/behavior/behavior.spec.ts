@@ -2,7 +2,7 @@ import { should } from "vitest";
 import {
     TemperatureDisplay,
     TemperatureSensor,
-} from "../src/behavior/observer";
+} from "../../src/behavior/observer";
 
 describe("Behavioral Patterns", () => {
     describe("Observer Patterns", () => {
@@ -85,12 +85,6 @@ describe("Behavioral Patterns", () => {
             ).toSatisfy((temps: number[]) =>
                 temps.every((temp) => temp === 20)
             );
-        });
-    });
-
-    describe("Iterator Patterns", () => {
-        it("should iterate over the list", () => {
-            expect(1).toBe(1);
         });
     });
 });

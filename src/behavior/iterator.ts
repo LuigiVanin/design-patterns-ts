@@ -1,3 +1,5 @@
+// Maybe redo this with a generator function
+
 export interface IteratorProtocol<T> {
     next(): T | undefined;
     rewind(): void;
@@ -74,12 +76,38 @@ export class LinkedList<T> implements IteratorProtocol<LinkedNode<T>> {
     }
 }
 
-// let list = new LinkedList<number>();
-// list.add(1);
-// list.add(2);
-// list.add(3);
-// list.add(4);
+// interface IteratorProtocol<T> {
+//     next(): T | undefined;
+//     rewind(): void;
+//     collect(): Array<T> | null;
+// }
 
-// while (list.next() !== undefined) {
-//     console.log(list.next()?.value);
+// interface IterableProtocol<T> {
+//     getIterator(): IteratorProtocol<T>;
+// }
+
+// class LinkedListIterator<T> implements IteratorProtocol<T> {
+//     private list: LinkedList<T>;
+
+//     constructor(list: LinkedList<T>) {
+//         this.list = list;
+//     }
+
+//     next(): T | undefined {
+//         return this.list.next()?.value;
+//     }
+
+//     rewind(): void {
+//         this.list.rewind();
+//     }
+
+//     collect(): Array<T> | null {
+//         return this.list.collect();
+//     }
+// }
+
+// class LinkedList<T> implements IterableProtocol<T> {
+//     getIterator() {
+//         return new LinkedListIterator<T>(this);
+//     }
 // }

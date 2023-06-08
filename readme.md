@@ -11,6 +11,6 @@
 
 <p align="center">
 
-<img src="./assets/tools-grid.svg" width="350px" />
+<img src="./assets/tools-grid.svg" width="300px" />
 
 </p>

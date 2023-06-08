@@ -5,7 +5,8 @@
     "main": "index.js",
     "scripts": {
         "test": "vitest --config ./vitest.config.ts run",
-        "test:dev": "vitest --config ./vitest.config.ts"
+        "test:dev": "vitest --config ./vitest.config.ts",
+        "test:docker": "docker build -t dp-test . && docker run -it --rm dp-test"
     },
     "keywords": [],
     "author": "",

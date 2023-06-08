@@ -4,7 +4,8 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "test": "vitest --config ./vitest.config.ts"
+        "test": "vitest --config ./vitest.config.ts",
+        "test:dev": "vitest --config ./vitest.config.ts"
     },
     "keywords": [],
     "author": "",

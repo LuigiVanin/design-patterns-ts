@@ -17,7 +17,7 @@ export class LocalStorageSingleton implements Singleton {
     }
 
     public static get Instance() {
-        return this._instance || new LocalStorageSingleton();
+        return this._instance || (this._instance = new this());
     }
 
     getInstance(): Singleton {

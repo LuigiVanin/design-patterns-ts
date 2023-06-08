@@ -13,4 +13,4 @@ RUN npm i
 
 COPY . .
 
-CMD [ "npm", "test", "run" ]
+CMD [ "npm", "test" ]

@@ -1,27 +1,18 @@
-interface Singleton {
-    getInstance(): Singleton;
-}
-
-export class LocalStorageSingleton implements Singleton {
+export class LocalStorageSingleton {
     private storage: Record<string, string> = {};
+    private static _instance: LocalStorageSingleton;
 
-    private static _instance: Singleton;
+    private contructor() {}
 
-    contructor() {
-        this.storage = {
-            key: JSON.stringify({
-                name: "John Doe",
-                age: 30,
-            }),
-        };
-    }
-
-    public static get Instance() {
-        return this._instance || (this._instance = new this());
-    }
-
-    getInstance(): Singleton {
+    public static getInstance(): LocalStorageSingleton {
+        if (!LocalStorageSingleton._instance) {
+            LocalStorageSingleton._instance = new LocalStorageSingleton();
+        }
         return LocalStorageSingleton._instance;
+    }
+
+    getStorage() {
+        return this.storage;
     }
 
     getItem(key: string) {

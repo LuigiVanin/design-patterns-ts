@@ -1,10 +1,11 @@
 export interface IteratorProtocol<T> {
     next(): T | undefined;
     rewind(): void;
+    collect(): Array<T> | null;
 }
 
-export class ListNode<T> {
-    next: ListNode<T> | null;
+export class LinkedNode<T> {
+    next: LinkedNode<T> | null;
     value: T;
 
     constructor(value: T) {
@@ -13,18 +14,20 @@ export class ListNode<T> {
     }
 }
 
-export class LinkedList<T> implements IteratorProtocol<ListNode<T>> {
-    private head: ListNode<T> | null;
-    private tail: ListNode<T> | null;
-    private currentNode: ListNode<T> | null;
+export class LinkedList<T> implements IteratorProtocol<LinkedNode<T>> {
+    public head: LinkedNode<T> | null;
+    public tail: LinkedNode<T> | null;
+    private currentNode: LinkedNode<T> | null;
+    public length: number;
 
     constructor() {
         this.head = null;
         this.tail = null;
+        this.length = 0;
         this.currentNode = null;
     }
 
-    navigate(callback: (node: ListNode<T>) => void) {
+    navigate(callback: (node: LinkedNode<T>) => void) {
         let node = this.head;
         while (node !== null) {
             callback(node);
@@ -33,23 +36,23 @@ export class LinkedList<T> implements IteratorProtocol<ListNode<T>> {
     }
 
     add(value: T) {
-        let listnode = new ListNode<T>(value);
+        let Linkednode = new LinkedNode<T>(value);
         if (this.head === null) {
-            this.head = listnode;
-            this.tail = listnode;
+            this.head = Linkednode;
+            this.tail = Linkednode;
         } else {
-            this.navigate(
-                (node) => node.next === null && (node.next = listnode)
-            );
-            this.tail = listnode;
+            if (!this.tail) throw new Error("Tail is null");
+            this.tail.next = Linkednode;
+            this.tail = Linkednode;
         }
+        this.length++;
     }
 
     rewind(): void {
         this.currentNode = null;
     }
 
-    next(): ListNode<T> | undefined {
+    next(): LinkedNode<T> | undefined {
         if (!this.head) throw new Error("List is empty");
         if (!this.currentNode) {
             this.currentNode = this.head;
@@ -60,7 +63,14 @@ export class LinkedList<T> implements IteratorProtocol<ListNode<T>> {
             return undefined;
         }
         this.currentNode = this.currentNode.next;
-        return this.currentNode as ListNode<T>;
+        return this.currentNode as LinkedNode<T>;
+    }
+
+    collect() {
+        if (!this.head && !this.tail) return null;
+        let list: Array<LinkedNode<T>> = [];
+        this.navigate((node) => list.push(node));
+        return list;
     }
 }
 

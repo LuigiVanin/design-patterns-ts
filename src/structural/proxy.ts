@@ -14,7 +14,7 @@ export class SerializedLocalStorageProxy<T extends object>
     private localStorage: LocalStorageSingleton;
 
     constructor() {
-        this.localStorage = new LocalStorageSingleton();
+        this.localStorage = LocalStorageSingleton.getInstance();
     }
 
     getItem(key: string): T | null {

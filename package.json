@@ -4,7 +4,7 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "test": "vitest --config ./vitest.config.ts",
+        "test": "vitest --config ./vitest.config.ts run",
         "test:dev": "vitest --config ./vitest.config.ts"
     },
     "keywords": [],

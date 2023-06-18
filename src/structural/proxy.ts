@@ -33,7 +33,7 @@ export class SerializedLocalStorageProxy<T extends object>
     }
 }
 
-interface User {
+export interface User {
     name: string;
     email: string;
     avatar: string;

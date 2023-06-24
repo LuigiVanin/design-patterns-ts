@@ -1,6 +1,6 @@
-// NOTE: This Need to be reviewed
-abstract class HtmlElement {
+export abstract class HtmlElement {
     innerHtml: string;
+    tagName: string = "";
     constructor(content: string | HtmlElement[] = "") {
         this.innerHtml = Array.isArray(content)
             ? content.map((element) => element.render()).join("")
@@ -13,6 +13,7 @@ abstract class HtmlElement {
 class HtmlDiv extends HtmlElement {
     constructor(content: string | HtmlElement[] = "") {
         super(content);
+        this.tagName = "DIV";
     }
 
     render() {
@@ -25,6 +26,7 @@ class HtmlButton extends HtmlElement {
 
     constructor(content: string | HtmlElement[] = "") {
         super(content);
+        this.tagName = "BUTTON";
     }
 
     setOnClick(onClick: () => void) {
@@ -51,6 +53,7 @@ class HtmlInput extends HtmlElement {
 
     constructor() {
         super("");
+        this.tagName = "INPUT";
     }
 
     setType(type: InputType) {
@@ -66,25 +69,39 @@ class HtmlInput extends HtmlElement {
     }
 }
 
-class HtmlElementFactory {
-    initialize(
+export class HtmlElementFactory {
+    constructor() {}
+
+    createDiv(innerHtml: string | HtmlElement[]): HtmlDiv {
+        return new HtmlDiv(innerHtml);
+    }
+
+    createButton(innerHtml: string | HtmlElement[]): HtmlButton {
+        return new HtmlButton(innerHtml);
+    }
+
+    createInput(): HtmlInput {
+        return new HtmlInput();
+    }
+
+    initialize<T extends HtmlElement>(
         element: string,
         innerHtml?: string | HtmlElement[]
-    ): HtmlElement {
+    ): T {
         switch (element) {
             case "div":
-                return new HtmlDiv(innerHtml || "");
+                return this.createDiv(innerHtml || "") as unknown as T;
             case "button":
-                return new HtmlButton(innerHtml || "");
+                return this.createButton(innerHtml || "") as unknown as T;
             case "input":
-                return new HtmlInput();
+                return this.createInput() as unknown as T;
             default:
                 throw Error("Element not found");
         }
     }
 }
 
-class Application extends HtmlElement {
+export class Application extends HtmlElement {
     private factory: HtmlElementFactory = new HtmlElementFactory();
 
     constructor() {

@@ -1,7 +1,11 @@
+import { expectTypeOf } from "vitest";
 import {
     HtmlElementFactory,
     HtmlElement,
     Application,
+    HtmlDiv,
+    HtmlInput,
+    HtmlButton,
 } from "../../src/creational/factory";
 
 describe("Creational Patterns --Factory--", () => {
@@ -85,6 +89,32 @@ describe("Creational Patterns --Factory--", () => {
                 expect(appHtml.includes("<input")).toBe(true);
                 expect(appHtml.includes("<button>")).toBe(true);
             }).not.toThrowError(Error);
+        });
+
+        it("testing types specification on create method with generics", () => {
+            const factory = new HtmlElementFactory();
+
+            const div = factory.initialize("div", "Text");
+            const input = factory.initialize("input");
+            const button = factory.initialize("button", "Text");
+            expectTypeOf(div).toEqualTypeOf<HtmlElement>();
+            expectTypeOf(input).toEqualTypeOf<HtmlElement>();
+            expectTypeOf(button).toEqualTypeOf<HtmlElement>();
+
+            const divSpecific = factory.initialize<HtmlDiv>("div", "Text");
+            const inputSpecific = factory.initialize<HtmlInput>("input");
+            const buttonSpecific = factory.initialize<HtmlButton>(
+                "button",
+                "Text"
+            );
+
+            expectTypeOf(divSpecific).toEqualTypeOf<HtmlDiv>();
+            expectTypeOf(inputSpecific).toEqualTypeOf<HtmlInput>();
+            expectTypeOf(buttonSpecific).toEqualTypeOf<HtmlButton>();
+
+            expectTypeOf(divSpecific).not.toEqualTypeOf<HtmlButton>();
+            expectTypeOf(inputSpecific).not.toEqualTypeOf<HtmlDiv>();
+            expectTypeOf(buttonSpecific).not.toEqualTypeOf<HtmlInput>();
         });
     });
 });

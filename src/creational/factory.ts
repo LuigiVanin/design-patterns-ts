@@ -10,7 +10,7 @@ export abstract class HtmlElement {
     abstract render(): string;
 }
 
-class HtmlDiv extends HtmlElement {
+export class HtmlDiv extends HtmlElement {
     constructor(content: string | HtmlElement[] = "") {
         super(content);
         this.tagName = "DIV";
@@ -21,7 +21,7 @@ class HtmlDiv extends HtmlElement {
     }
 }
 
-class HtmlButton extends HtmlElement {
+export class HtmlButton extends HtmlElement {
     onClick: () => void = () => {};
 
     constructor(content: string | HtmlElement[] = "") {
@@ -47,7 +47,7 @@ type InputType =
     | "radio"
     | "email";
 
-class HtmlInput extends HtmlElement {
+export class HtmlInput extends HtmlElement {
     private type: InputType = "text";
     private value: string = "";
 

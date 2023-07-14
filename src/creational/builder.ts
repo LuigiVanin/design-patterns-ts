@@ -1,22 +1,28 @@
-interface Builder<T> {
+export interface Builder<T> {
     build(): T;
 }
 
-interface Player {
+export interface Player {
     name: string;
     color: PieceColor;
 }
 
-interface PiecePosition {
+export interface PiecePosition {
     piece: Piece;
     position: [number, number];
 }
 
-type PieceColor = "white" | "black";
-type PieceName = "pawn" | "rook" | "knight" | "bishop" | "queen" | "king";
-type Board = Array<Array<null | Piece>>;
+export type PieceColor = "white" | "black";
+export type PieceName =
+    | "pawn"
+    | "rook"
+    | "knight"
+    | "bishop"
+    | "queen"
+    | "king";
+export type Board = Array<Array<null | Piece>>;
 
-class Piece {
+export class Piece {
     name: PieceName;
     color: PieceColor;
 
@@ -26,7 +32,7 @@ class Piece {
     }
 }
 
-class Chess {
+export class Chess {
     board: Board;
     players: Player[];
 
@@ -36,7 +42,7 @@ class Chess {
     }
 }
 
-class ChessBuilder implements Builder<Chess> {
+export class ChessBuilder implements Builder<Chess> {
     private players: Player[] = [];
     private boardSize: [number, number] = [8, 8];
     private pieces: PiecePosition[] = [];
@@ -80,12 +86,3 @@ class ChessBuilder implements Builder<Chess> {
         ]);
     }
 }
-
-const game1 = new ChessBuilder().addBoard([8, 8]).build();
-const game2 = new ChessBuilder()
-    .addBoard([10, 10])
-    .addPlayer("John")
-    .addPlayer("Mary")
-    .addPiece(new Piece("king", "black"), [0, 0])
-    .addPiece(new Piece("king", "white"), [9, 9])
-    .build();

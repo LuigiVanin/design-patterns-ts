@@ -11,7 +11,7 @@ abstract class Component implements GraphicFigure {
     protected parent: Component | null = null;
     protected children: Component[] = [];
     protected coordinates: Coordinates = { x: 0, y: 0 };
-    isComposite: boolean;
+    readonly isComposite: boolean;
 
     constructor(isComposite?: boolean) {
         this.isComposite = isComposite ?? false;

@@ -1,13 +1,13 @@
-interface Coordinates {
+export interface Coordinates {
     x: number;
     y: number;
 }
 
-interface GraphicFigure {
+export interface GraphicFigure {
     draw(): Coordinates[];
 }
 
-abstract class Component implements GraphicFigure {
+export class Component implements GraphicFigure {
     protected parent: Component | null = null;
     protected children: Component[] = [];
     protected coordinates: Coordinates = { x: 0, y: 0 };
@@ -21,11 +21,15 @@ abstract class Component implements GraphicFigure {
         this.parent = parent;
     }
 
-    public getParent(): Component | null {
+    public getParent(): Readonly<Component | null> {
         return this.parent;
     }
 
-    public add(child: Component): void {
+    getChildren(): Readonly<Component[]> {
+        return this.children;
+    }
+
+    protected add(child: Component): void {
         this.children.push(child);
         child.setParent(this);
     }
@@ -44,13 +48,16 @@ abstract class Component implements GraphicFigure {
         });
         return dots;
     }
+
+    getCoordinates() {
+        return this.coordinates;
+    }
 }
 
-class Dot extends Component {
+export class Dot extends Component {
     constructor({ x, y }: Coordinates) {
         super();
         this.coordinates = { x, y };
-        this.add(new Dot({ x, y }));
     }
 
     public draw(): Coordinates[] {
@@ -58,7 +65,7 @@ class Dot extends Component {
     }
 }
 
-class Circle extends Component {
+export class Circle extends Component {
     public radius: number;
 
     constructor({ x, y }: Coordinates, radius: number) {
@@ -100,7 +107,7 @@ class Circle extends Component {
     }
 }
 
-class Rectangle extends Component {
+export class Rectangle extends Component {
     public width: number;
     public height: number;
 
@@ -136,7 +143,7 @@ class Rectangle extends Component {
     }
 }
 
-class CustomFigure extends Component {
+export class CustomFigure extends Component {
     constructor({ x, y }: Coordinates) {
         super();
         this.coordinates = { x, y };
@@ -145,7 +152,7 @@ class CustomFigure extends Component {
     }
 }
 
-class GraphicFigureComposite extends Component {
+export class GraphicFigureComposite extends Component {
     constructor() {
         super(true);
     }

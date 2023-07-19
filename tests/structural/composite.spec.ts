@@ -69,6 +69,15 @@ describe("Structural Patterns --Composite--", () => {
             });
         });
 
-        it("Testing draw function on Components", () => {});
+        it("Testing draw function on Components", () => {
+            expect(dot.draw().length).toBe(1);
+            expect(circle.draw().length).toBeGreaterThan(1);
+            expect(rectangle.draw().length).toBeGreaterThan(1);
+            expect(custom.draw().length).toBeGreaterThan(1);
+
+            custom.getChildren().forEach((comp) => {
+                expect(comp.draw().length).toBeGreaterThan(1);
+            });
+        });
     });
 });

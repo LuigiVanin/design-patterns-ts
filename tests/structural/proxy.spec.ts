@@ -8,7 +8,7 @@ import { expectTypeOf } from "vitest";
 
 const CUSTOM_KEY = "custom_user_key";
 
-describe("Behavioral Patterns --Iterator--", () => {
+describe("Structural Patterns --Proxy--", () => {
     beforeAll(() => {
         const localStorage = LocalStorageSingleton.getInstance();
         localStorage.setItem(CUSTOM_KEY, JSON.stringify(null));

@@ -1,4 +1,4 @@
-class ComplexNumber {
+export class ComplexNumber {
     constructor(private real: number, private imaginary: number) {}
 
     getReal() {
@@ -18,7 +18,7 @@ interface OperationStrategy {
     execute(num1: ComplexNumber, num2: ComplexNumber): ComplexNumber;
 }
 
-class AdditionStrategy implements OperationStrategy {
+export class AdditionStrategy implements OperationStrategy {
     execute(num1: ComplexNumber, num2: ComplexNumber): ComplexNumber {
         return new ComplexNumber(
             num1.getReal() + num2.getReal(),
@@ -27,7 +27,7 @@ class AdditionStrategy implements OperationStrategy {
     }
 }
 
-class SubtractionStrategy implements OperationStrategy {
+export class SubtractionStrategy implements OperationStrategy {
     execute(num1: ComplexNumber, num2: ComplexNumber) {
         return new ComplexNumber(
             num1.getReal() - num2.getReal(),
@@ -36,7 +36,7 @@ class SubtractionStrategy implements OperationStrategy {
     }
 }
 
-class MultiplicationStrategy implements OperationStrategy {
+export class MultiplicationStrategy implements OperationStrategy {
     execute(num1: ComplexNumber, num2: ComplexNumber) {
         return new ComplexNumber(
             num1.getReal() * num2.getReal() -
@@ -47,7 +47,7 @@ class MultiplicationStrategy implements OperationStrategy {
     }
 }
 
-class ComplexContext {
+export class ComplexContext {
     constructor(private strategy: OperationStrategy) {}
 
     executeStrategy(num1: ComplexNumber, num2: ComplexNumber) {
@@ -55,7 +55,7 @@ class ComplexContext {
     }
 }
 
-class AppExample {
+export class AppExample {
     main(operation: string, num1: ComplexNumber, num2: ComplexNumber) {
         let ctx: ComplexContext | null = null;
 

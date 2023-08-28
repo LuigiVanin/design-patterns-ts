@@ -16,6 +16,10 @@ export class Shape implements Prototype {
         return this.coordinates;
     }
 
+    setCoordinates(coordinates: Coordinates) {
+        this.coordinates = coordinates;
+    }
+
     clone(): Shape {
         return new Shape(this);
     }
@@ -30,14 +34,8 @@ export class Circle extends Shape {
         this.coordinates = circle?.getCoordinates() || { x: 0, y: 0 };
     }
 
-    setCoordinates(coordinates: Coordinates): Circle {
-        this.coordinates = coordinates;
-        return this;
-    }
-
-    setRadius(radius: number): Circle {
+    setRadius(radius: number) {
         this.radius = radius;
-        return this;
     }
 
     getCoordinates(): Coordinates {
@@ -63,23 +61,12 @@ export class Rectangle extends Shape {
         this.width = rectangle?.getWidth() || 0;
     }
 
-    setCoordinates(coordinates: Coordinates): Rectangle {
-        this.coordinates = coordinates;
-        return this;
-    }
-
-    setWidth(width: number): Rectangle {
+    setWidth(width: number) {
         this.width = width;
-        return this;
     }
 
-    setHeight(height: number): Rectangle {
+    setHeight(height: number) {
         this.height = height;
-        return this;
-    }
-
-    getCoordinates(): Coordinates {
-        return this.coordinates;
     }
 
     getWidth(): number {

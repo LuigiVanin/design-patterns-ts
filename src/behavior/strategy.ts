@@ -57,25 +57,24 @@ export class ComplexContext {
 
 export class AppExample {
     main(operation: string, num1: ComplexNumber, num2: ComplexNumber) {
-        let ctx: ComplexContext | null = null;
+        let strategy: OperationStrategy | null = null;
 
         switch (operation) {
             case "addition":
-                ctx = new ComplexContext(new AdditionStrategy());
+                strategy = new AdditionStrategy();
                 break;
             case "subtraction":
-                ctx = new ComplexContext(new SubtractionStrategy());
+                strategy = new SubtractionStrategy();
                 break;
             case "multiplication":
-                ctx = new ComplexContext(new MultiplicationStrategy());
+                strategy = new MultiplicationStrategy();
                 break;
             default:
                 throw new Error("Invalid operation");
         }
-
+        const ctx = new ComplexContext(strategy);
         const result = ctx.executeStrategy(num1, num2);
 
-        result.log();
         return result;
     }
 }

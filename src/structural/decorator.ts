@@ -1,13 +1,13 @@
 import { SerializedLocalStorageProxy } from "./proxy";
 
-interface UserData {
+export interface UserData {
     id: string;
     username: string;
     password: string;
     email: string;
 }
 
-class SerializedLocalStorage<
+export class SerializedLocalStorage<
     T extends object
 > extends SerializedLocalStorageProxy<T> {
     private key: string;
@@ -26,11 +26,18 @@ class SerializedLocalStorage<
     }
 }
 
-class AsyncUserRequest {
-    send() {
+export class AsyncUserRequest {
+    constructor() {}
+
+    send(email?: string) {
+        if (!email)
+            throw {
+                code: "missing-email",
+                message: "You forgot to add an email to the request body",
+            };
         return {
             data: {
-                email: "luisfvanin@gmail.com",
+                email,
                 id: "21",
                 password: "123456",
                 username: "LuisVanin",
@@ -49,8 +56,14 @@ export class RequestStateDecorator implements BaseDecorator<AsyncUserRequest> {
     error: any = null;
     state: UserData | null = null;
 
+    private userEmail: string | undefined = undefined;
+
     constructor(wrappee: AsyncUserRequest) {
         this.wrappee = wrappee;
+    }
+
+    setUserEmail(email: string) {
+        this.userEmail = email;
     }
 
     startRequest() {
@@ -60,7 +73,7 @@ export class RequestStateDecorator implements BaseDecorator<AsyncUserRequest> {
 
     finishRequest() {
         try {
-            this.state = this.wrappee.send().data;
+            this.state = this.wrappee.send(this.userEmail).data;
         } catch (err) {
             this.error = err;
         } finally {
@@ -89,7 +102,7 @@ export class RequestLocalStorageDecorator
 
     finishRequest() {
         try {
-            const data = this.wrappee.send().data;
+            const data = this.wrappee.send("localstorageemail@gmail.com").data;
             this.storage.updateItem(data);
         } catch (err) {
             this.error = err;

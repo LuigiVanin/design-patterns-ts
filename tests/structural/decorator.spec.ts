@@ -99,6 +99,7 @@ describe("Behavioral Patterns", () => {
         expect(localStorage.getItem()?.email).toBe(
             "localstorageemail@gmail.com"
         );
+
         expect(localStorage.getItem()).not.toStrictEqual(stateRequest.state);
     });
 });

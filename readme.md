@@ -27,7 +27,7 @@ Currently the project implements four patterns of each category, but more patter
     -   Template Method ([CODE](./src/behavioral/template-method) | DOCS)
     -   Strategy ([CODE](./src/behavioral/strategy) | DOCS)
     -   Iterator ([CODE](./src/behavioral/iterator) | [DOCS](./docs/iterator.md))
-    -   Observer ([CODE](./src/behavioral/observer) | DOCS)
+    -   Observer ([CODE](./src/behavioral/observer) | [DOCS](./docs/observer.md))
 
 <br />
 

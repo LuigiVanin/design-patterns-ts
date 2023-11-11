@@ -28,7 +28,11 @@ class TextEditor implements Prototype {
         return clone;
     }
 }
+```
 
+A usablidade da estrutura ficaria da seguinte maneira:
+
+```typescript
 const main = () => {
     editor = new TextEditor();
     editor.setText("Esse é o seu editor vazio, escreva algo para começar");
@@ -37,10 +41,11 @@ const main = () => {
 
     functionThatShuffleEditorWords(editorClone);
 
-    console.log(editor) // <== Editor original intacto
-    console.log(editorCloned) // <== Editor clonado embaralhado
+    console.log(editor) // <-- Editor original intacto
+    console.log(editorCloned) // <-- Editor clonado embaralhado
 }
 ```
+
 
 ### Referências
 

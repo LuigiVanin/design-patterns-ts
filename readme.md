@@ -13,7 +13,7 @@ Currently the project implements four patterns of each category, but more patter
     -   Builder ([CODE](./src/creational/builder) | [DOCS](./docs/builder.md))
     -   Factory ([CODE](./src/creational/factory) | DOCS)
     -   Prototype ([CODE](./src/creational/prototype) | [DOCS](./docs/prototype.md))
-    -   Singleton ([CODE](./src/creational/singleton) | DOCS)
+    -   Singleton ([CODE](./src/creational/singleton) | [DOCS](./docs/singleton.md))
 
 -   **Structural Pattern**
 

@@ -43,3 +43,7 @@ class Vagao implements IVagao {
 
 interface ITrem extends IVagao {}
 ```
+
+### Referências
+
+- https://refactoring.guru/design-patterns/iterator

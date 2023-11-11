@@ -70,3 +70,7 @@ const house = new HouseBuilder()
 ```
 
 E voilà, temos uma casa criada com apenas uma linha de código, e o usuário não precisa se preocupar com a ordem dos parâmetros, ou com os parâmetros que ele não precisa.
+
+### Referências
+
+- https://refactoring.guru/design-patterns/builder

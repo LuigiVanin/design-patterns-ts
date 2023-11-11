@@ -69,3 +69,7 @@ class Loja implements Publisher<Produto> {
     }
 } 
 ```
+
+### Referências
+
+- https://refactoring.guru/design-patterns/observer
